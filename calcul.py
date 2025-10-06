@@ -3,11 +3,11 @@ Author: Noa R.
 Date: 2025 
 """
 
-# importem les libreries que necessitem
+# importem les llibreries que necessitem
 import numpy as np              -- per les funcions matematiques
 from matplotlib import rcParams -- per configurar i adjustar fonts, tamanys, estils,...
 
-# seleccionem font i tamany
+# seleccionem font i tamany de les fonts (lletres)
 rcParams['font.family'] = 'serif'
 rcParams['font.size'] = 14
 
@@ -15,28 +15,28 @@ rcParams['font.size'] = 14
 # nombre d'iteracions del càlcul
 Np = 100
 
-# creació dels arrays per a la taula:
-# 1. creació de un array X de Np valores uniformement espaciats dins -273 i 0 inclos
+# creació de les matrius per a la taula:
+# 1. creació d'una matriu X de Np valors uniformement espaciats dins -273 i 0 inclòs
 X = np.linspace(-273, 0, Np)
 
-# 2. creació de un array Y de Np valores uniformement espaciats dins 400 i 830 inclos
+# 2. creació d'una matriu Y de Np valors uniformement espaciats dins 400 i 830 inclòs
 Y = np.linspace(400, 830, Np)
 
 # definició de les variables utilitzades
-# inicialicem theta3 y theta2 com array de Np ceros
+# inicialicem theta3 y theta2 com matriu de Np ceros
 # theta2 = np.zeros(Np)
 # theta3 = np.zeros(Np)
 
 theta3, theta2 = np.linspace(0, 0, Np), np.linspace(0, 0, Np)
 
-# sumem element a element, inicialmente serà un array de ceros
+# sumem element a element, inicialmente serà una matriu de ceros
 sumtheta = theta2+theta3
-# definim dues constants (longitudes) iguals a 415
+# definim dues constants (longituds) iguals a 415
 L3, L2 = 415, 415
 
 
 # funció equivalent a F(theta3(t), x(t), y(t))
-# definim una funcio que recibeix theta3,x,y
+# definim una funciò que rep theta3,x,y
 def equa_inverseF(theta3, x, y):
     global L3, L2
     return (L3*np.cos(theta3)-x)**2+(L3*np.sin(theta3)-y)**2-L2**2
@@ -46,7 +46,7 @@ def equa_inverseG(sumtheta, x, y):
     global L3, L2
     return (L2*np.cos(sumtheta)-x)**2+(L2*np.sin(sumtheta)-y)**2-L3**2
 
-# funció que realitza la dicotomia per resoldre l'equació f donada amb una precisió de 10**(-5) en un interval [a,b]
+# funció que realitza la bisectriu per resoldre l'equació f donada amb una precisió de 10**(-5) en un interval [a,b]
 def dichoto(f, a, b):
     # si el interval es major que 2e-5--> m = (a+b)/2
     if (b-a) > (2*10**(-5)):
@@ -84,3 +84,4 @@ S'observa que al final es troba com a angle per a thêta3 1,5708 rad és a dir 9
 Aquestes són efectivament les valors esperades de thêta (les que es poden trobar a la taula de dades geomètriques proporcionada).
 Són aquests valors els que permeten després calcular les derivades de thêta 2 i 3 obtenint així una velocitat.
 """
+

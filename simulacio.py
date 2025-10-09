@@ -147,7 +147,7 @@ ax = Fig.add_subplot(111, aspect='equal')
 ax.set_axis_off()
 ax.set_xlim((-1.2*(L3+L2), 1.2*(L3+L2)))
 ax.set_ylim((-0.5, 1.2*(L3+L2+L1)))
-ax.set_title("Mouvement de l'utilisateur de la position assise à debout", fontsize=30)
+ax.set_title("Moviment de l'usuari de la posició asseguda a dreta", fontsize=30)
 fig.set_facecolor("#ffffff")
 line1, = ax.plot([0., L3], [0., 0.], 'o-b', lw=18, markersize=25)
 line2, = ax.plot([L3, L3+L2], [0., 0.], 'o-', lw=18, markersize=25)
@@ -158,7 +158,7 @@ anim = animation.FuncAnimation(Fig, animate, np.arange(1, Np), interval=20, blit
 plt.show()
 
 
-# desament del vídeo en format .gif
+# desament del vídeo en format gif
 """
 writergif = animation.PillowWriter(fps=20) 
 anim.save("animation.gif", writer=writergif)
@@ -172,36 +172,36 @@ C.set_vel(R0, 0.)
 # càlcul de l'expressió de la velocitat de B en el sistema R0
 B.v2pt_theory(C, R0, R3)
 vB = B.vel(R0)
-print('\nVitesse de B:', vB.express(R0).simplify())
+print('\nVelocitat de B:', vB.express(R0).simplify())
 
-# càlcul de l'expressió de la velocitat de A en el sistema R0
+# càlcul de l'expressió de la velocitat d'A en el sistema R0
 A.v2pt_theory(B, R0, R2)
 vA = A.vel(R0)
-print('\nVitesse de A:', vA.express(R0).simplify())
+print('\nVelocitat d'A:', vA.express(R0).simplify())
 
 # verificació de la composició de les velocitats
 omegA = R2.ang_vel_in(R0)
 BA = A.pos_from(B)
-print('\nComposition des vitesse de A et B:',(B.vel(R0) + omegA.cross(BA)).express(R0).simplify())
+print('\nComposició de les velocitats d’A i de B:',(B.vel(R0) + omegA.cross(BA)).express(R0).simplify())
 
 # càlcul de l'expressió de l'acceleració de B en el sistema R0
 B.a2pt_theory(C, R0, R3)
 aB = B.acc(R0)
-print('\nAccélération de B:', aB.express(R0).simplify())
+print('\nAcceleració de B:', aB.express(R0).simplify())
 
 # càlcul de l'expressió de l'acceleració de A en el sistema R0
 A.a2pt_theory(B, R0, R2)
 aA = A.acc(R0)
-print('\nAccélération de A:', aA.express(R0).simplify())
+print('\nAcceleració d'A:', aA.express(R0).simplify())
 
 # verificació de la composició de les acceleracions
 omegA = R2.ang_vel_in(R0)
 omegaA = R2.ang_acc_in(R0)
 BA = A.pos_from(B)
-print('\nComposition des accélération de A et B:', (B.acc(R0) + omegaA.cross(BA) + omegA.cross(omegA.cross(BA))).simplify())
+print('\nComposició de les acceleracions d’A i de B:', (B.acc(R0) + omegaA.cross(BA) + omegA.cross(omegA.cross(BA))).simplify())
 
 
-## Càlcul de les velocitats de les components de A en el sistema R0 ##
+## Càlcul de les velocitats de les components d'A en el sistema R0 ##
 # definició de la velocitat (derivada) de theta2 i theta3
 derivtheta2 = np.deg2rad(108.5)/5
 derivtheta3 = np.deg2rad(20)/5
@@ -227,9 +227,9 @@ for t in range(Np):
 # visualització dels resultats (gràfica de les velocitats de les components)
 plt.plot(range(Np), X, label="ẋ(t)", color='royalblue')
 plt.plot(range(Np), Y, label="ẏ(t)", color='navy')
-plt.ylabel("Vitesse (en mm/s)")
-plt.xlabel("Nombre d'intération de la dichotomie")
-plt.title('Evolution de ẋ(t) et de ẏ(t) en fonction du temps')
+plt.ylabel("Velocitat (en mm/s)")
+plt.xlabel("Nombre d’iteracions de la bisectriu")
+plt.title('Evolució de ẋ(t) i de ẏ(t) en funció del temps')
 plt.legend()
 plt.grid()
 plt.show()
@@ -256,13 +256,13 @@ display('\nDYG3:',dyg3,'\nDYG2:',dyg2)
 # càlcul de l'equilibri estàtic
 dW = C3*d3 + C2*d2 - m*g*dy2 - m3*g*dyg3 - m2*g*dyg2
 dW = sp.expand(dW)
-print('\nEquilibre statique:',dW)
+print('\nEquilibri estàtic:',dW)
 
 # càlcul lagrangià (potencial de gravetat)
 L = -m*g*ay - m3*g*yg3 - m2*g*yg2
-print('\nPotentiel de gravité:',L)
-print('\nForce C3:',sp.Eq(-sp.diff(L,theta3).simplify(),C3))
-print('\nForce C2:',sp.Eq(-sp.diff(L,theta2).simplify(),C2))
+print('\nPotencial de gravetat:',L)
+print('\nForça C3:',sp.Eq(-sp.diff(L,theta3).simplify(),C3))
+print('\nForça C2:',sp.Eq(-sp.diff(L,theta2).simplify(),C2))
 
 # entrada dels paràmetres (per a una persona de 70 kg)
 params = [(g, 9.81), (m, 57), (m3, 9), (m2, 14), (l3, L3), (l2, L2)]
@@ -316,14 +316,15 @@ fig5.plot(FC2, label="C2")
 fig5.plot(FC3, label="C3")
 fig5.legend()
 fig5.grid()
-fig5.set_title('Couples des points A et B')
-fig5.set_xlabel(r"Nombres d'itération du calcul des $\theta$")
-fig5.set_ylabel('Couple (en N.m)')
+fig5.set_title('Moments dels punts A i B')
+fig5.set_xlabel(r"Nombre d’iteracions del càlcul de $\theta$")
+fig5.set_ylabel('Moment (en N.m)')
 fig6.plot(P2, label="P2")
 fig6.plot(P3, label="P3")
 fig6.legend()
 fig6.grid()
-fig6.set_title('Puissance nécessaire en A et en B')
-fig6.set_xlabel(r"Nombres d'itération du calcul des $\theta$")
-fig6.set_ylabel('Puissance (en W)')
+fig6.set_title('Potència necessària a A i a B')
+fig6.set_xlabel(r"Nombre d’iteracions del càlcul de $\theta$")
+fig6.set_ylabel('Potència (en W)')
 plt.show()
+
